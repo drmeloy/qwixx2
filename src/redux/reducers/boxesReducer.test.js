@@ -1,4 +1,4 @@
-import { checkRed, checkYellow, checkGreen, checkBlue, checkPenalty } from '../actions/boxActions';
+import { checkRed, checkYellow, checkGreen, checkBlue, checkPenalty, disableRow } from '../actions/boxActions';
 import reducer from './boxesReducer';
 
 describe('boxes reducer', () => {
@@ -48,5 +48,33 @@ describe('boxes reducer', () => {
 
     const newState2 = reducer(newState, checkPenalty());
     expect(newState2).toEqual({ penalties: 2 });
+  });
+
+  it('handles a disableRow action', () => {
+    const initialState = {
+      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      penalties: 0
+    };
+
+    const newState = reducer(initialState, disableRow('red'));
+    expect(newState).toEqual({
+      red: [],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      penalties: 0
+    });
+
+    const newState2 = reducer(newState, disableRow('blue'));
+    expect(newState2).toEqual({
+      red: [],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      blue: [],
+      penalties: 0
+    });
   });
 });
