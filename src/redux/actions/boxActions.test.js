@@ -23,6 +23,6 @@ describe('board action', () => {
 
   it('can create a CHECK_PENALTY action', () => {
     const action = checkPenalty();
-    expect(action).toEqual({ type: CHECK_PENALTY});
+    expect(action).toEqual({ type: CHECK_PENALTY });
   });
 });
