@@ -1,4 +1,4 @@
-import { CHECK_RED, checkRed, CHECK_YELLOW, checkYellow, CHECK_GREEN, checkGreen, CHECK_BLUE, checkBlue, CHECKK_PENALTY, checkPenalty } from './boardActions';
+import { CHECK_RED, checkRed, CHECK_YELLOW, checkYellow, CHECK_GREEN, checkGreen, CHECK_BLUE, checkBlue, CHECKK_PENALTY, checkPenalty } from './boxActions';
 
 describe('board action', () => {
   it('can create a CHECK_RED action', () => {
