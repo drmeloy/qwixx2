@@ -12,3 +12,6 @@ export const checkBlue = num => ({ type: CHECK_BLUE, payload: num });
 
 export const CHECK_PENALTY = 'CHECK_PENALTY';
 export const checkPenalty = () => ({ type: CHECK_PENALTY });
+
+export const DISABLE_ROW = 'DISABLE_ROW';
+export const disableRow = row => ({ type: DISABLE_ROW, payload: row });

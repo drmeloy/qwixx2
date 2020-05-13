@@ -1,4 +1,4 @@
-import { CHECK_RED, checkRed, CHECK_YELLOW, checkYellow, CHECK_GREEN, checkGreen, CHECK_BLUE, checkBlue, CHECK_PENALTY, checkPenalty } from './boxActions';
+import { CHECK_RED, checkRed, CHECK_YELLOW, checkYellow, CHECK_GREEN, checkGreen, CHECK_BLUE, checkBlue, CHECK_PENALTY, checkPenalty, DISABLE_ROW, disableRow } from './boxActions';
 
 describe('board action', () => {
   it('can create a CHECK_RED action', () => {
@@ -24,5 +24,10 @@ describe('board action', () => {
   it('can create a CHECK_PENALTY action', () => {
     const action = checkPenalty();
     expect(action).toEqual({ type: CHECK_PENALTY });
+  });
+
+  it('can create a DISABLE_ROW action', () => {
+    const action = disableRow('red');
+    expect(action).toEqual({ type: DISABLE_ROW, payload: 'red' });
   });
 });
