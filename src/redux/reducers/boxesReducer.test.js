@@ -1,5 +1,5 @@
 import { checkRed } from '../actions/boxActions';
-import reducer from './boardReducer';
+import reducer from './boxesReducer';
 
 describe('boxes reducer', () => {
   it('handles a checkRed action', () => {
