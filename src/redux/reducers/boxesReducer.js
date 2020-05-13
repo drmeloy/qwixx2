@@ -1,4 +1,4 @@
-import { CHECK_RED, CHECK_YELLOW, CHECK_GREEN, CHECK_BLUE, CHECKK_PENALTY } from '../actions/boxActions';
+import { CHECK_RED, CHECK_YELLOW, CHECK_GREEN, CHECK_BLUE, CHECK_PENALTY } from '../actions/boxActions';
 
 const initialState = {
   red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -25,7 +25,7 @@ export default function reducer(state = initialState, action){
       return { ...state, green: boxArray };
     case CHECK_BLUE:
       return { ...state, blue: boxArray };
-    case CHECKK_PENALTY:
+    case CHECK_PENALTY:
       return { ...state, penalties: state.penalties + 1 };
   }
 }

@@ -10,5 +10,5 @@ export const checkGreen = num => ({ type: CHECK_GREEN, payload: num });
 export const CHECK_BLUE = 'CHECK_BLUE';
 export const checkBlue = num => ({ type: CHECK_BLUE, payload: num });
 
-export const CHECKK_PENALTY = 'CHECK_PENALTY';
-export const checkPenalty = () => ({ type: CHECKK_PENALTY });
+export const CHECK_PENALTY = 'CHECK_PENALTY';
+export const checkPenalty = () => ({ type: CHECK_PENALTY });
