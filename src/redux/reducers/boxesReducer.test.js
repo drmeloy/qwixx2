@@ -1,4 +1,4 @@
-import { checkRed, checkYellow, checkGreen, checkBlue, checkPenalty, disableRow } from '../actions/boxActions';
+import { checkRed, checkYellow, checkGreen, checkBlue, checkPenalty, disableRow, checkBox } from '../actions/boxActions';
 import reducer from './boxesReducer';
 
 describe('boxes reducer', () => {
@@ -75,6 +75,70 @@ describe('boxes reducer', () => {
       green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       blue: [],
       penalties: 0
+    });
+  });
+
+  it('handles a checkBox action', () => {
+    const initialState = {
+      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      penalties: 0
+    };
+
+    const newState = reducer(initialState, checkBox('red', 4));
+    expect(newState).toEqual({
+      red: [5, 6, 7, 8, 9, 10, 11, 12],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      penalties: 0
+    });
+
+    const newState2 = reducer(newState, checkBox('yellow', 12));
+    expect(newState2).toEqual({
+      red: [5, 6, 7, 8, 9, 10, 11, 12],
+      yellow: [],
+      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      penalties: 0
+    });
+
+    const newState3 = reducer(newState2, checkBox('green', 8));
+    expect(newState3).toEqual({
+      red: [5, 6, 7, 8, 9, 10, 11, 12],
+      yellow: [],
+      green: [9, 10, 11, 12],
+      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      penalties: 0
+    });
+
+    const newState4 = reducer(newState3, checkBox('blue', 2));
+    expect(newState4).toEqual({
+      red: [5, 6, 7, 8, 9, 10, 11, 12],
+      yellow: [],
+      green: [9, 10, 11, 12],
+      blue: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      penalties: 0
+    });
+
+    const newState5 = reducer(newState4, checkBox('penalty'));
+    expect(newState5).toEqual({
+      red: [5, 6, 7, 8, 9, 10, 11, 12],
+      yellow: [],
+      green: [9, 10, 11, 12],
+      blue: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      penalties: 1
+    });
+
+    const newState6 = reducer(newState5, checkBox('penalty'));
+    expect(newState6).toEqual({
+      red: [5, 6, 7, 8, 9, 10, 11, 12],
+      yellow: [],
+      green: [9, 10, 11, 12],
+      blue: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      penalties: 2
     });
   });
 });
