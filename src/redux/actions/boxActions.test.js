@@ -1,28 +1,29 @@
-import { CHECK_RED, checkRed, CHECK_YELLOW, checkYellow, CHECK_GREEN, checkGreen, CHECK_BLUE, checkBlue, CHECK_PENALTY, checkPenalty, DISABLE_ROW, disableRow, checkBox } from './boxActions';
+import { DISABLE_ROW, disableRow, checkBox } from './boxActions';
+import { CHECK_RED, CHECK_YELLOW, CHECK_GREEN, CHECK_BLUE, CHECK_PENALTY } from '../helpers/reduxHelpers';
 
 describe('board action', () => {
   it('can create a CHECK_RED action', () => {
-    const action = checkRed(2);
+    const action = checkBox('red', 2);
     expect(action).toEqual({ type: CHECK_RED, payload: 2 });
   });
 
   it('can create a CHECK_YELLOW action', () => {
-    const action = checkYellow(4);
+    const action = checkBox('yellow', 4);
     expect(action).toEqual({ type: CHECK_YELLOW, payload: 4 });
   });
 
   it('can create a CHECK_GREEN action', () => {
-    const action = checkGreen(11);
+    const action = checkBox('green', 11);
     expect(action).toEqual({ type: CHECK_GREEN, payload: 11 });
   });
 
   it('can create a CHECK_BLUE action', () => {
-    const action = checkBlue(12);
+    const action = checkBox('blue', 12);
     expect(action).toEqual({ type: CHECK_BLUE, payload: 12 });
   });
 
   it('can create a CHECK_PENALTY action', () => {
-    const action = checkPenalty();
+    const action = checkBox('penalty');
     expect(action).toEqual({ type: CHECK_PENALTY });
   });
 
