@@ -1,5 +1,5 @@
-import { CHECK_RED, CHECK_YELLOW, CHECK_GREEN, CHECK_BLUE, CHECK_PENALTY, DISABLE_ROW } from '../actions/boxActions';
-import { generateBoxArray } from '../helpers/reduxHelpers';
+import { DISABLE_ROW } from '../actions/boxActions';
+import { generateBoxArray, CHECK_RED, CHECK_YELLOW, CHECK_GREEN, CHECK_BLUE, CHECK_PENALTY } from '../helpers/reduxHelpers';
 
 const initialState = {
   red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
