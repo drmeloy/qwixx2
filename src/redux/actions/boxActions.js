@@ -15,3 +15,13 @@ export const checkPenalty = () => ({ type: CHECK_PENALTY });
 
 export const DISABLE_ROW = 'DISABLE_ROW';
 export const disableRow = row => ({ type: DISABLE_ROW, payload: row });
+
+const rowDictionary = {
+  'red': CHECK_RED,
+  'yellow': CHECK_YELLOW,
+  'green': CHECK_GREEN,
+  'blue': CHECK_BLUE,
+  'penalty': CHECK_PENALTY
+};
+
+export const checkBox = (row, num) => ({ type: rowDictionary[row], payload: num });
