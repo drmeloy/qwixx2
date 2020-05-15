@@ -34,3 +34,5 @@ export const scoreDictionary = {
 export const scoreArray = [0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78];
 
 export const penaltyScoreArray = [0, -5, -10, -15, -20];
+
+export const generateRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
