@@ -24,5 +24,6 @@ export default function reducer(state = initialState, action){
       return { ...state, penalties: state.penalties + 1 };
     case DISABLE_ROW:
       return { ...state, [action.payload]: [] };
+    default: return state;
   }
 }

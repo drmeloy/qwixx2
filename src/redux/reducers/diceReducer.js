@@ -21,5 +21,6 @@ export default function redcuer(state = initialState, action){
         greenDie: generateRandomNumber(1, 6),
         blueDie: generateRandomNumber(1, 6)
       };
+    default: return state;
   }
 }
