@@ -1,0 +1,8 @@
+.DiceDisplay {
+  display: flex;
+  justify-content: space-around;
+  border: 3px solid #b7b163;
+  border-radius: 10px;
+  background: #fffaef;
+  padding: 10px;
+}

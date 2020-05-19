@@ -48,13 +48,17 @@ export default function DiceDisplay(){
 
   return (
     <>
-      <button onClick={() => dispatch(rollDice())}>Roll</button>
-      <img src={dice['r' + red]}></img>
-      <img src={dice['y' + yellow]}></img>
-      <img src={dice['g' + green]}></img>
-      <img src={dice['b' + blue]}></img>
-      <img src={dice['w' + white1]}></img>
-      <img src={dice['w' + white2]}></img>
+      <div className={styles.DiceDisplay}>
+        <img src={dice['r' + red]}></img>
+        <img src={dice['y' + yellow]}></img>
+        <img src={dice['g' + green]}></img>
+        <img src={dice['b' + blue]}></img>
+        <img src={dice['w' + white1]}></img>
+        <img src={dice['w' + white2]}></img>
+        <button onClick={() => dispatch(rollDice())}>Roll</button>
+        <button>Confirm</button>
+        <button>End Game</button>
+      </div>
     </>
   );
 }
