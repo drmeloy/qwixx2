@@ -2,16 +2,18 @@ import { getRedScore, getYellowScore, getGreenScore, getBlueScore, getPenaltySco
 
 describe('score selectors', () => {
   const state = {
-    redIndex: 2,
-    redScore: 3,
-    yellowIndex: 6,
-    yellowScore: 21,
-    greenIndex: 10,
-    greenScore: 55,
-    blueIndex: 12,
-    blueScore: 78,
-    penaltyIndex: 3,
-    penaltyScore: -15
+    score: {
+      redIndex: 2,
+      redScore: 3,
+      yellowIndex: 6,
+      yellowScore: 21,
+      greenIndex: 10,
+      greenScore: 55,
+      blueIndex: 12,
+      blueScore: 78,
+      penaltyIndex: 3,
+      penaltyScore: -15
+    }
   };
 
   it('can get the red score', () => {
