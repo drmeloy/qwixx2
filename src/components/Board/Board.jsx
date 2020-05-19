@@ -16,12 +16,12 @@ export default function Board() {
   return (
     <>
       <button onClick={() => dispatch(rollDice())}>Roll</button>
-      <div>{white1}</div>
-      <div>{white2}</div>
-      <div>{red}</div>
-      <div>{yellow}</div>
-      <div>{green}</div>
-      <div>{blue}</div>
+      <div>White 1: {white1}</div>
+      <div>White 2: {white2}</div>
+      <div>Red: {red}</div>
+      <div>Yellow: {yellow}</div>
+      <div>Green: {green}</div>
+      <div>Blue: {blue}</div>
     </>
   );
 }
