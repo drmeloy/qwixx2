@@ -1,5 +1,12 @@
 import React from 'react';
+import styles from './Board.css';
 
 export default function Board() {
-  return <h1>Board board board!</h1>;
+
+  
+  return (
+    <>
+      <div className={styles.Board}>Hello</div>
+    </>
+  );
 }

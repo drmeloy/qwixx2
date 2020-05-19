@@ -26,5 +26,6 @@ export default function reducer(state = initialState, action){
       return { ...state, blueIndex: state.blueIndex + indexStep, blueScore: scoreArray[state.blueIndex + indexStep] };
     case INCREMENT_SCORE_PENALTY:
       return { ...state, penaltyIndex: state.penaltyIndex + 1, penaltyScore: penaltyScoreArray[state.penaltyIndex + 1] };
+    default: return state;
   }
 }
