@@ -2,12 +2,14 @@ import { getWhiteDie1Value, getWhiteDie2Value, getWhiteDiceSum, getRedDieValue, 
 
 describe('dice selectors', () => {
   const state = {
-    whiteDie1: 3,
-    whiteDie2: 6,
-    redDie: 5,
-    yellowDie: 2,
-    greenDie: 1,
-    blueDie: 4
+    dice: {
+      whiteDie1: 3,
+      whiteDie2: 6,
+      redDie: 5,
+      yellowDie: 2,
+      greenDie: 1,
+      blueDie: 4
+    }
   };
 
   it('can get the white die 1 value', () => {

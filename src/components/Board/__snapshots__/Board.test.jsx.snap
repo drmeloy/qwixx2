@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Board component Matches snapshot 1`] = `
-<h1>
-  Board board board!
-</h1>
+<Fragment>
+  <div
+    className="Board"
+  >
+    Hello
+  </div>
+</Fragment>
 `;
