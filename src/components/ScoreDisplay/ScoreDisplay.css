@@ -1,10 +1,20 @@
 .ScoreDisplay {
   width: 35%;
+  padding: 10px;
+  margin: 1%;
   display: flex;
   justify-content: space-around;
   border: 3px solid #b7b163;
   border-radius: 10px;
   background: #fffaef;
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 10%
+  }
 
   .red {
     background: hsl(349, 76%, 85%);
@@ -34,5 +44,6 @@
   .total {
     border: 1px solid;
     background: white;
+    width: 20%;
   }
 }
