@@ -47,18 +47,16 @@ export default function DiceDisplay(){
   const dice = { r1, r2, r3, r4, r5, r6, y1, y2, y3, y4, y5, y6, g1, g2, g3, g4, g5, g6, b1, b2, b3, b4, b5, b6, w1, w2, w3, w4, w5, w6 };
 
   return (
-    <>
-      <div className={styles.DiceDisplay}>
-        <img src={dice['r' + red]}></img>
-        <img src={dice['y' + yellow]}></img>
-        <img src={dice['g' + green]}></img>
-        <img src={dice['b' + blue]}></img>
-        <img src={dice['w' + white1]}></img>
-        <img src={dice['w' + white2]}></img>
-        <button onClick={() => dispatch(rollDice())}>Roll</button>
-        <button>Confirm</button>
-        <button>End Game</button>
-      </div>
-    </>
+    <section className={styles.DiceDisplay}>
+      <img src={dice['r' + red]}></img>
+      <img src={dice['y' + yellow]}></img>
+      <img src={dice['g' + green]}></img>
+      <img src={dice['b' + blue]}></img>
+      <img src={dice['w' + white1]}></img>
+      <img src={dice['w' + white2]}></img>
+      <button onClick={() => dispatch(rollDice())}>Roll</button>
+      <button>Confirm</button>
+      <button>End Game</button>
+    </section>
   );
 }
