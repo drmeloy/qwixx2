@@ -2,12 +2,12 @@ import { ROLL_DICE } from '../actions/diceActions';
 import { generateRandomNumber } from '../helpers/reduxHelpers';
 
 const initialState = {
-  whiteDie1: 0,
-  whiteDie2: 0,
-  redDie: 0,
-  yellowDie: 0,
-  greenDie: 0,
-  blueDie: 0
+  whiteDie1: 1,
+  whiteDie2: 1,
+  redDie: 1,
+  yellowDie: 1,
+  greenDie: 1,
+  blueDie: 1
 };
 
 export default function redcuer(state = initialState, action){
