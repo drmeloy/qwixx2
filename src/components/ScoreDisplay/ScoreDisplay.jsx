@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ScoreDisplay.css';
 import { useSelector } from 'react-redux';
 import { getRedScore, getYellowScore, getGreenScore, getBlueScore, getPenaltyScore, getTotalScore } from '../../redux/selectors/scoreSelectors';
+import PenaltyBoxes from '../PenaltyBoxes/PenaltyBoxes';
 
 export default function ScoreDisplay(){
   const redScore = useSelector(getRedScore);
@@ -24,6 +25,7 @@ export default function ScoreDisplay(){
       <span className={styles.penalty}>{penaltyScore}</span>
       <span> = </span>
       <span className={styles.total}>{totalScore}</span>
+      <PenaltyBoxes />
     </section>
   );
 }
