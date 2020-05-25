@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './PenaltyBoxes.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { checkBox } from '../../redux/actions/boxActions';
+import { getPenalties } from '../../redux/selectors/boxSelectors';
+import { incrementScore } from '../../redux/actions/scoreActions';
 
 export default function PenaltyBoxes(){
-  const dispatch = useDispatch();
-  const addPenalty = () => dispatch(checkBox('penalty'));
+  const dispatch = useDispatch();  
+  const addPenalty = ({ target }) => {
+    if(target.checked){
+      dispatch(checkBox('penalty'));
+      dispatch(incrementScore('penalty'));
+    }
+    else {
+      alert('checked!');
+    }
+  };
 
   return (
     <section className={styles.PenaltySection}>
