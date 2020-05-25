@@ -11,12 +11,12 @@ export default function NumberBoxes(){
       }
     }
     else if(color === 'green' || color === 'blue'){
-      for(let i = 13; i > 1; i--){
+      for(let i = 12; i > 0; i--){
         numbers.push(i);
       }
     }
     return numbers.map((num, i) => (
-      <li key={color + i}>
+      <li key={color + ' ' + i} className={styles[color]}>
         {num}
       </li>
     ));

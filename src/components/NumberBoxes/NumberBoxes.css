@@ -1,15 +1,48 @@
 .NumberBoxes {
   width: 35%;
+  padding: 10px;
+  margin: 1%;
   display: flex;
   flex-direction: column;
+  border: 3px solid #b7b163;
+  border-radius: 10px;
+  background: #fffaef;
 
   ul {
     display: flex;
+    margin: 0;
     justify-content: space-between;
     padding: 0;
   }
 
   li {
+    margin: 1px;
+    padding: 5px;
+    width: 10em;
+    border-radius: 10px;
     list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .red {
+    background: hsl(349, 76%, 85%);
+    border: 3px solid hsl(349, 76%, 50%);
+  }
+
+  .yellow {
+    background: hsl(42, 100%, 91%);
+    border: 3px solid hsl(42, 96%, 62%);
+  }
+
+  .green {
+    background: hsl(114, 47%, 80%);
+    border: 3px solid hsl(114, 47%, 45%);
+  }
+
+  .blue {
+    background: hsl(211, 65%, 85%);
+    border: 3px solid hsl(211, 65%, 40%);
   }
 }
