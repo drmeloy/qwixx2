@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './NumberBoxes.css';
+import lock from '../../../public/assets/lock.png';
 
 export default function NumberBoxes(){
   const colors = ['red', 'yellow', 'green', 'blue'];
@@ -17,7 +18,7 @@ export default function NumberBoxes(){
     }
     return numbers.map((num, i) => (
       <li key={color + ' ' + i} className={styles[color]}>
-        {num}
+        {num === 13 || num === 1 ? <img src={lock}></img> : num}
       </li>
     ));
   };
