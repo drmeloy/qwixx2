@@ -1,4 +1,4 @@
-import { INCREMENT_SCORE_RED, scoreArray, INCREMENT_SCORE_YELLOW, INCREMENT_SCORE_GREEN, INCREMENT_SCORE_BLUE, INCREMENT_SCORE_PENALTY, penaltyScoreArray } from '../helpers/reduxHelpers';
+import { INCREMENT_SCORE_RED, scoreArray, INCREMENT_SCORE_YELLOW, INCREMENT_SCORE_GREEN, INCREMENT_SCORE_BLUE, INCREMENT_SCORE_PENALTY, penaltyScoreArray } from '../../utils/reduxHelpers';
 
 const initialState = {
   redIndex: 0,

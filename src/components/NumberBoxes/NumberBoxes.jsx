@@ -23,7 +23,6 @@ export default function NumberBoxes(){
     ));
   };
   const boxes = colors.map(color => generateRow(color));
-  console.log(boxes);
 
   return (
     <section className={styles.NumberBoxes}>

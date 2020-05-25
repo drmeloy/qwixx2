@@ -1,4 +1,4 @@
-import { INCREMENT_SCORE_RED, INCREMENT_SCORE_YELLOW, INCREMENT_SCORE_GREEN, INCREMENT_SCORE_BLUE, INCREMENT_SCORE_PENALTY } from '../helpers/reduxHelpers';
+import { INCREMENT_SCORE_RED, INCREMENT_SCORE_YELLOW, INCREMENT_SCORE_GREEN, INCREMENT_SCORE_BLUE, INCREMENT_SCORE_PENALTY } from '../../utils/reduxHelpers';
 import { incrementScore } from './scoreActions';
 
 describe('score actions', () => {

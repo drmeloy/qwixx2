@@ -1,5 +1,5 @@
 import { DISABLE_ROW, disableRow, checkBox } from './boxActions';
-import { CHECK_RED, CHECK_YELLOW, CHECK_GREEN, CHECK_BLUE, CHECK_PENALTY } from '../helpers/reduxHelpers';
+import { CHECK_RED, CHECK_YELLOW, CHECK_GREEN, CHECK_BLUE, CHECK_PENALTY } from '../../utils/reduxHelpers';
 
 describe('board action', () => {
   it('can create a CHECK_RED action', () => {

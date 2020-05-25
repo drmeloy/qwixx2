@@ -1,4 +1,4 @@
-import { rowDictionary } from '../helpers/reduxHelpers';
+import { rowDictionary } from '../../utils/reduxHelpers';
 
 export const checkBox = (row, num) => ({ type: rowDictionary[row], payload: num });
 
