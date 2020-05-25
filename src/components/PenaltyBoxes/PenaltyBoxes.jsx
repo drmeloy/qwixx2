@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './PenaltyBoxes.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { checkBox } from '../../redux/actions/boxActions';
-import { getPenalties } from '../../redux/selectors/boxSelectors';
 import { incrementScore } from '../../redux/actions/scoreActions';
 
 export default function PenaltyBoxes(){
