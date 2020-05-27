@@ -1,8 +1,16 @@
 import React from 'react';
 import lock from '../../public/assets/lock.png';
 import styles from '../components/NumberBoxes/NumberBoxes.css';
+import { useSelector } from 'react-redux';
+import { getReds, getYellows, getGreens, getBlues } from '../redux/selectors/boxSelectors';
 
 const colors = ['red', 'yellow', 'green', 'blue'];
+const funcHash = {
+  'red': getReds,
+  'yellow': getYellows,
+  'green': getGreens,
+  'blue': getBlues
+};
 
 const generateRow = color => {
   let numbers = [];
