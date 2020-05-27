@@ -1,6 +1,11 @@
-export const generateBoxArray = num => {
+export const generateBoxArray = (color, num) => {
   const array = [];
-  for(let i = num + 1; i < 13; i++) array.push(i);
+  if(color === CHECK_RED || color === CHECK_YELLOW){
+    for(let i = num + 1; i < 13; i++) array.push(i);
+  }
+  else if(color === CHECK_GREEN || color === CHECK_BLUE){
+    for(let i = num - 1; i > 1; i--) array.push(i);
+  }
   return array;
 };
 

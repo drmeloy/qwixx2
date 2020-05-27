@@ -5,8 +5,8 @@ describe('boxes reducer', () => {
   const initialState = {
     red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
+    blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
     penalties: 0
   };
 
@@ -15,8 +15,8 @@ describe('boxes reducer', () => {
     expect(newState).toEqual({
       red: [5, 6, 7, 8, 9, 10, 11, 12],
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
       penalties: 0
     });
   });
@@ -26,8 +26,8 @@ describe('boxes reducer', () => {
     expect(newState).toEqual({
       red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       yellow: [],
-      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
       penalties: 0
     });
   });
@@ -37,8 +37,8 @@ describe('boxes reducer', () => {
     expect(newState).toEqual({
       red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      green: [9, 10, 11, 12],
-      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [7, 6, 5, 4, 3, 2],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
       penalties: 0
     });
   });
@@ -48,8 +48,8 @@ describe('boxes reducer', () => {
     expect(newState).toEqual({
       red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      blue: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
+      blue: [],
       penalties: 0
     });
   });
@@ -59,27 +59,19 @@ describe('boxes reducer', () => {
     expect(newState).toEqual({
       red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
       penalties: 1
     });
   });
 
   it('handles a disableRow action', () => {
-    const initialState = {
-      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      penalties: 0
-    };
-
     const newState = reducer(initialState, disableRow('red'));
     expect(newState).toEqual({
       red: [],
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      blue: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
       penalties: 0
     });
 
@@ -87,7 +79,7 @@ describe('boxes reducer', () => {
     expect(newState2).toEqual({
       red: [],
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      green: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
       blue: [],
       penalties: 0
     });
