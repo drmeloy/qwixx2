@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './NumberBoxes.css';
-import { boxes } from '../../utils/boxesHelpers';
+import { colors, generateRow } from '../../utils/boxesHelpers';
 
 export default function NumberBoxes(){
+  const boxes = colors.map(color => generateRow(color));
+
   return (
     <section className={styles.NumberBoxes}>
       <ul>

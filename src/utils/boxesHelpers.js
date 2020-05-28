@@ -4,7 +4,7 @@ import styles from '../components/NumberBoxes/NumberBoxes.css';
 import { useSelector } from 'react-redux';
 import { getReds, getYellows, getGreens, getBlues } from '../redux/selectors/boxSelectors';
 
-const colors = ['red', 'yellow', 'green', 'blue'];
+export const colors = ['red', 'yellow', 'green', 'blue'];
 const funcHash = {
   'red': getReds,
   'yellow': getYellows,
@@ -12,7 +12,7 @@ const funcHash = {
   'blue': getBlues
 };
 
-const generateRow = color => {
+export const generateRow = color => {
   let numbers = [];
   if(color === 'red' || color === 'yellow'){
     for(let i = 2; i < 14; i++){
@@ -25,10 +25,10 @@ const generateRow = color => {
     }
   }
   return numbers.map((num, i) => (
-    <li key={color + ' ' + i} className={styles[color]}>
+    <li key={color + ' ' + i} className={useSelector(funcHash[color]).includes(num) ? styles[color] : styles.inactive}>
       {num === 13 || num === 1 ? <img src={lock}></img> : num}
     </li>
   ));
 };
 
-export const boxes = colors.map(color => generateRow(color));
+
