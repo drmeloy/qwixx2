@@ -25,7 +25,7 @@ export const generateRow = color => {
     }
   }
   return numbers.map((num, i) => (
-    <li key={color + ' ' + i} className={useSelector(funcHash[color]).includes(num) ? styles[color] : styles.inactive}>
+    <li key={color + ' ' + i} className={useSelector(funcHash[color]).includes(num) ? styles[color] : styles.inactive} onClick={() => console.log(color + ' ' + num)}>
       {num === 13 || num === 1 ? <img src={lock}></img> : num}
     </li>
   ));
