@@ -1,4 +1,4 @@
-import { ADD_ACTION, REMOVE_ACTION } from '../actions/actionsActions';
+import { ADD_ACTION, REMOVE_ACTION, CLEAR_ACTIONS } from '../actions/actionsActions';
 
 const initialState = [];
 
@@ -9,5 +9,8 @@ export default function reducer(state = initialState, action){
       return [...state, action.payload];
     case REMOVE_ACTION:
       return state.filter(item => item[0] !== action.payload[0] && item[1] !== action.payload[1]);
+    case CLEAR_ACTIONS:
+      return [];
+    default: return state;
   }
 }

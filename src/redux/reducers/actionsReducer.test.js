@@ -1,5 +1,5 @@
 import reducer from './actionsReducer';
-import { addAction, removeAction } from '../actions/actionsActions';
+import { addAction, removeAction, clearActions } from '../actions/actionsActions';
 
 describe('actions reducer', () => {
   const initialState = [];
@@ -29,5 +29,11 @@ describe('actions reducer', () => {
     const fullState = [['red', 4], ['blue', 8]];
     const newState = reducer(fullState, removeAction(['green', 12]));
     expect(newState).toEqual(fullState);
+  });
+
+  it('handles a clearActions action', () => {
+    const fullState = [['red', 4], ['blue', 8]];
+    const newState = reducer(fullState, clearActions());
+    expect(newState).toEqual([]);
   });
 });
