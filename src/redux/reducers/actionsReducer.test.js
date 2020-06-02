@@ -23,6 +23,13 @@ describe('actions reducer', () => {
     expect(newState).toEqual([['blue', 8]]);
     const newState1 = reducer(newState, removeAction(['blue', 8]));
     expect(newState1).toEqual([]);
+    const newState2 = reducer(fullState, removeAction(['blue', 8]));
+    expect(newState2).toEqual([['red', 4]]);
+    const allBlues = [['blue', 10], ['blue', 8]];
+    const noTen = reducer(allBlues, removeAction(['blue', 10]));
+    expect(noTen).toEqual([['blue', 8]]);
+    const noEight = reducer(allBlues, removeAction(['blue', 8]));
+    expect(noEight).toEqual([['blue', 10]]);
   });
 
   it('handles removeAction on something not present in state', () => {

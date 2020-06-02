@@ -17,12 +17,11 @@ const funcHash = {
 export const generateRow = color => {
   const dispatch = useDispatch();
   const queue = useSelector(getBothActions);
-  console.log(queue);
-  
 
   const changeQueue = (color, num) => {
     if(queue.length < 1) dispatch(addAction([color, num]));
-    else if(queue[0][0] === color && queue[0][1] === num || queue[1][0] === color && queue[1][1] === num) dispatch(removeAction([color, num]));
+    // Is there conditional key checking of evaluated variables?
+    else if(Object.fromEntries(queue)[color] === num) dispatch(removeAction([color, num]));
     else dispatch(addAction([color, num]));
   };
 
