@@ -20,8 +20,7 @@ export const generateRow = color => {
 
   const changeQueue = (color, num) => {
     if(queue.length < 1) dispatch(addAction([color, num]));
-    // Is there conditional key checking of evaluated variables?
-    else if(Object.fromEntries(queue)[color] === num) dispatch(removeAction([color, num]));
+    else if(JSON.stringify(queue).includes(JSON.stringify([color, num]))) dispatch(removeAction([color, num]));
     else dispatch(addAction([color, num]));
   };
 
