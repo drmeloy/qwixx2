@@ -1,8 +1,10 @@
 import React from 'react';
 import lock from '../../public/assets/lock.png';
 import styles from '../components/NumberBoxes/NumberBoxes.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getReds, getYellows, getGreens, getBlues } from '../redux/selectors/boxSelectors';
+import { addAction, removeAction } from '../redux/actions/actionsActions';
+import { getBothActions } from '../redux/selectors/actionsSelectors';
 
 export const colors = ['red', 'yellow', 'green', 'blue'];
 const funcHash = {
@@ -13,6 +15,17 @@ const funcHash = {
 };
 
 export const generateRow = color => {
+  const dispatch = useDispatch();
+  const queue = useSelector(getBothActions);
+  console.log(queue);
+  
+
+  const changeQueue = (color, num) => {
+    if(queue.length < 1) dispatch(addAction([color, num]));
+    else if(queue[0][0] === color && queue[0][1] === num || queue[1][0] === color && queue[1][1] === num) dispatch(removeAction([color, num]));
+    else dispatch(addAction([color, num]));
+  };
+
   let numbers = [];
   if(color === 'red' || color === 'yellow'){
     for(let i = 2; i < 14; i++){
@@ -25,7 +38,7 @@ export const generateRow = color => {
     }
   }
   return numbers.map((num, i) => (
-    <li key={color + ' ' + i} className={useSelector(funcHash[color]).includes(num) ? styles[color] : styles.inactive} onClick={() => console.log(color + ' ' + num)}>
+    <li key={color + ' ' + i} className={useSelector(funcHash[color]).includes(num) ? styles[color] : styles.inactive} onClick={() => changeQueue(color, num)}>
       {num === 13 || num === 1 ? <img src={lock}></img> : num}
     </li>
   ));
