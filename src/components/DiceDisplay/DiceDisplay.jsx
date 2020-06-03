@@ -3,6 +3,7 @@ import styles from './DiceDisplay.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getWhiteDie1Value, getWhiteDie2Value, getRedDieValue, getYellowDieValue, getGreenDieValue, getBlueDieValue } from '../../redux/selectors/diceSelectors';
 import { rollDice } from '../../redux/actions/diceActions';
+import { checkBox } from '../../redux/actions/boxActions';
 import r1 from '../../../public/assets/dice-faces/r1.png';
 import r2 from '../../../public/assets/dice-faces/r2.png';
 import r3 from '../../../public/assets/dice-faces/r3.png';
@@ -33,6 +34,8 @@ import w3 from '../../../public/assets/dice-faces/w3.png';
 import w4 from '../../../public/assets/dice-faces/w4.png';
 import w5 from '../../../public/assets/dice-faces/w5.png';
 import w6 from '../../../public/assets/dice-faces/w6.png';
+import { getBothActions } from '../../redux/selectors/actionsSelectors';
+import { clearActions } from '../../redux/actions/actionsActions';
 
 export default function DiceDisplay(){
   const dispatch = useDispatch();
@@ -46,6 +49,13 @@ export default function DiceDisplay(){
 
   const dice = { r1, r2, r3, r4, r5, r6, y1, y2, y3, y4, y5, y6, g1, g2, g3, g4, g5, g6, b1, b2, b3, b4, b5, b6, w1, w2, w3, w4, w5, w6 };
 
+  const actions = useSelector(getBothActions);
+  const takeActions = () => {
+    actions.forEach(action => dispatch(checkBox(action[0], action[1])));
+    dispatch(clearActions());
+  };
+  
+
   return (
     <section className={styles.DiceDisplay}>
       <img src={dice['r' + red]}></img>
@@ -55,7 +65,7 @@ export default function DiceDisplay(){
       <img src={dice['w' + white1]}></img>
       <img src={dice['w' + white2]}></img>
       <button onClick={() => dispatch(rollDice())}>Roll</button>
-      <button>Confirm</button>
+      <button onClick={takeActions}>Confirm</button>
       <button>End Game</button>
     </section>
   );
