@@ -36,6 +36,7 @@ import w5 from '../../../public/assets/dice-faces/w5.png';
 import w6 from '../../../public/assets/dice-faces/w6.png';
 import { getBothActions } from '../../redux/selectors/actionsSelectors';
 import { clearActions } from '../../redux/actions/actionsActions';
+import { incrementScore } from '../../redux/actions/scoreActions';
 
 export default function DiceDisplay(){
   const dispatch = useDispatch();
@@ -51,7 +52,10 @@ export default function DiceDisplay(){
 
   const actions = useSelector(getBothActions);
   const takeActions = () => {
-    actions.forEach(action => dispatch(checkBox(action[0], action[1])));
+    actions.forEach(action => {
+      dispatch(checkBox(action[0], action[1]));
+      dispatch(incrementScore(action[0], action[1]));
+    });
     dispatch(clearActions());
   };
   
