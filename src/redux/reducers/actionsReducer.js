@@ -6,7 +6,9 @@ export default function reducer(state = initialState, action){
   switch(action.type){
     case ADD_ACTION:
       if(state.length === 2) return [...state];
-      return [...state, action.payload];
+      else if(state.length === 1 && JSON.stringify(state[0]) === JSON.stringify(['penalty'])) return [...state];
+      else if(state.length === 1 && JSON.stringify(state[0]) !== JSON.stringify(['penalty']) && JSON.stringify(action.payload) === JSON.stringify(['penalty'])) return [...state];
+      else return [...state, action.payload];
     case REMOVE_ACTION:
       if(state.length === 2 && JSON.stringify(state[0]) === JSON.stringify(action.payload)) return [state[1]];
       else if(state.length === 2 && JSON.stringify(state[1]) === JSON.stringify(action.payload)) return [state[0]];

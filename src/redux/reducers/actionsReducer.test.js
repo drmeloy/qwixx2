@@ -11,6 +11,23 @@ describe('actions reducer', () => {
     expect(newState1).toEqual([['red', 4], ['blue', 8]]);
   });
 
+  it('can add a penalty', () => {
+    const newState = reducer(initialState, addAction(['penalty']));
+    expect(newState).toEqual([['penalty']]);
+  });
+
+  it('will not add more than one penalty', () => {
+    const penaltyState = [['penalty']];
+    const newState = reducer(penaltyState, addAction(['penalty']));
+    expect(newState).toEqual(penaltyState);
+  });
+
+  it('will not add a penalty if a colored box is already in state', () => {
+    const state = [['blue', 4]];
+    const newState = reducer(state, addAction(['penalty']));
+    expect(newState).toEqual(state);
+  });
+
   it('won\'t add more than two actions', () => {
     const fullState = [['red', 4], ['blue', 8]];
     const newState = reducer(fullState, addAction(['green', 9]));
