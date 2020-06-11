@@ -1,10 +1,10 @@
 export const generateBoxArray = (color, num) => {
   const array = [];
   if(color === CHECK_RED || color === CHECK_YELLOW){
-    for(let i = num + 1; i < 12; i++) array.push(i);
+    for(let i = num + 1; i < 13; i++) array.push(i);
   }
   else if(color === CHECK_GREEN || color === CHECK_BLUE){
-    for(let i = num - 1; i > 2; i--) array.push(i);
+    for(let i = num - 1; i > 1; i--) array.push(i);
   }
   return array;
 };

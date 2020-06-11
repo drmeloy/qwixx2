@@ -28,5 +28,3 @@ export const generateRow = color => {
     <NumberBox key={color + num} color={color} num={num} selector={funcHash[color]}/>
   )));
 };
-
-
