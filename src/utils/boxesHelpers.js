@@ -24,6 +24,15 @@ export const generateRow = color => {
     else dispatch(addAction([color, num]));
   };
 
+  const swapBoxCheck = ({ target }) => {
+    
+  };
+
+  const handleClick = (color, num) => {
+    changeQueue(color, num);
+    swapBoxCheck(color, num);
+  };
+
   let numbers = [];
   if(color === 'red' || color === 'yellow'){
     for(let i = 2; i < 14; i++){
@@ -36,7 +45,7 @@ export const generateRow = color => {
     }
   }
   return numbers.map((num, i) => (
-    <li key={color + ' ' + i} className={useSelector(funcHash[color]).includes(num) ? styles[color] : styles.inactive} onClick={() => changeQueue(color, num)}>
+    <li key={color + ' ' + i} className={useSelector(funcHash[color]).includes(num) ? styles[color] : styles.inactive} onClick={handleClick}>
       {num === 13 || num === 1 ? <img src={lock}></img> : num}
     </li>
   ));
