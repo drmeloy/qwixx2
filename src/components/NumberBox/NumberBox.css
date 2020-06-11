@@ -1,3 +1,13 @@
+.box {
+  margin: 2px;
+  padding: 5px;
+  width: 10em;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .red {
   background: hsl(349, 76%, 85%);
   border: 3px solid hsl(349, 76%, 50%);

@@ -23,7 +23,7 @@ export default function NumberBox({ color, num, selector }){
   };
 
   return (
-    <div className={`${useSelector(selector).includes(num) ? styles[color] : styles.inactive} ${checked === true ? styles.checkedBox : ''}`} onClick={handleClick}>
+    <div className={`${styles.box} ${useSelector(selector).includes(num) ? styles[color] : styles.inactive} ${checked === true ? styles.checkedBox : ''}`} onClick={handleClick}>
       {num === 13 || num === 1 ? <img src={lock}></img> : num}
     </div>
   );
