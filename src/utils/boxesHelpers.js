@@ -1,14 +1,10 @@
 import React from 'react';
-import lock from '../../public/assets/lock.png';
-import styles from '../components/NumberBoxes/NumberBoxes.css';
-import { useSelector, useDispatch } from 'react-redux';
 import { getReds, getYellows, getGreens, getBlues } from '../redux/selectors/boxSelectors';
-import { addAction, removeAction } from '../redux/actions/actionsActions';
-import { getBothActions } from '../redux/selectors/actionsSelectors';
 import NumberBox from '../components/NumberBox/NumberBox';
 
 export const colors = ['red', 'yellow', 'green', 'blue'];
-export const funcHash = {
+
+const funcHash = {
   'red': getReds,
   'yellow': getYellows,
   'green': getGreens,
@@ -31,12 +27,6 @@ export const generateRow = color => {
   return numbers.map((num => (
     <NumberBox key={color + num} color={color} num={num} selector={funcHash[color]}/>
   )));
-
-  // return numbers.map((num, i) => (
-  //   <li key={color + ' ' + i} className={useSelector(funcHash[color]).includes(num) ? styles[color] : styles.inactive} onClick={() => changeQueue(color, num)}>
-  //     {num === 13 || num === 1 ? <img src={lock}></img> : num}
-  //   </li>
-  // ));
 };
 
 

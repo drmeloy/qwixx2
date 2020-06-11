@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './NumberBox.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBothActions } from '../../redux/selectors/actionsSelectors';
 import { addAction, removeAction } from '../../redux/actions/actionsActions';
 import lock from '../../../public/assets/lock.png';
-import { getReds, getYellows, getGreens, getBlues } from '../../redux/selectors/boxSelectors';
 
 export default function NumberBox({ color, num, selector }){
   const [checked, swapChecked] = useState(false);
@@ -23,9 +23,20 @@ export default function NumberBox({ color, num, selector }){
   };
 
   return (
-    <div className={`${styles.box} ${useSelector(selector).includes(num) ? styles[color] : styles.inactive} ${checked === true ? styles.checkedBox : ''}`} onClick={handleClick}>
+    <div 
+      className={`
+        ${styles.box} 
+        ${useSelector(selector).includes(num) ? styles[color] : styles.inactive} 
+        ${checked === true ? styles.checkedBox : ''}`}
+      onClick={handleClick}
+    >
       {num === 13 || num === 1 ? <img src={lock}></img> : num}
     </div>
   );
 }
 
+NumberBox.propTypes = {
+  color: PropTypes.string.isRequired,
+  num: PropTypes.number.isRequired,
+  selector: PropTypes.func.isRequired
+};
