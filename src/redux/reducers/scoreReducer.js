@@ -1,4 +1,4 @@
-import { INCREMENT_SCORE_RED, scoreArray, INCREMENT_SCORE_YELLOW, INCREMENT_SCORE_GREEN, INCREMENT_SCORE_BLUE, INCREMENT_SCORE_PENALTY, penaltyScoreArray } from '../helpers/reduxHelpers';
+import { INCREMENT_SCORE_RED, scoreArray, INCREMENT_SCORE_YELLOW, INCREMENT_SCORE_GREEN, INCREMENT_SCORE_BLUE, INCREMENT_SCORE_PENALTY, penaltyScoreArray } from '../../utils/reduxHelpers';
 
 const initialState = {
   redIndex: 0,
@@ -14,7 +14,10 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action){
-  const indexStep = action.payload < 12 ? 1 : 2;
+  let indexStep;
+  if(action.type === INCREMENT_SCORE_RED || action.type === INCREMENT_SCORE_YELLOW) indexStep = action.payload < 12 ? 1 : 2;
+  else if(action.type === INCREMENT_SCORE_GREEN || action.type === INCREMENT_SCORE_BLUE) indexStep = action.payload > 2 ? 1 : 2;
+  
   switch(action.type){
     case INCREMENT_SCORE_RED:
       return { ...state, redIndex: state.redIndex + indexStep, redScore: scoreArray[state.redIndex + indexStep] };

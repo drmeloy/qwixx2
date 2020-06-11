@@ -1,5 +1,5 @@
 import { ROLL_DICE } from '../actions/diceActions';
-import { generateRandomNumber } from '../helpers/reduxHelpers';
+import { generateRandomNumber } from '../../utils/reduxHelpers';
 
 const initialState = {
   whiteDie1: 1,

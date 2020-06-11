@@ -1,0 +1,9 @@
+.PenaltySection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: .6em;
+  margin-left: 10px;
+}

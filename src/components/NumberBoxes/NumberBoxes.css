@@ -1,0 +1,16 @@
+.NumberBoxes {
+  width: 35%;
+  padding: 10px;
+  margin: 1%;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #b7b163;
+  border-radius: 10px;
+  background: #fffaef;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
