@@ -1,0 +1,28 @@
+.red {
+  background: hsl(349, 76%, 85%);
+  border: 3px solid hsl(349, 76%, 50%);
+}
+
+.yellow {
+  background: hsl(42, 100%, 91%);
+  border: 3px solid hsl(42, 96%, 62%);
+}
+
+.green {
+  background: hsl(114, 47%, 80%);
+  border: 3px solid hsl(114, 47%, 45%);
+}
+
+.blue {
+  background: hsl(211, 65%, 85%);
+  border: 3px solid hsl(211, 65%, 40%);
+}
+
+.inactive {
+  background: rgb(179, 179, 179);
+  border: 3px solid;
+}
+
+.checkedBox {
+  background-color: hotpink;
+}

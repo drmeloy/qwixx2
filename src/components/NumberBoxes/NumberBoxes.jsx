@@ -5,20 +5,21 @@ import { colors, generateRow } from '../../utils/boxesHelpers';
 export default function NumberBoxes(){
   const boxes = colors.map(color => generateRow(color));
 
+
   return (
     <section className={styles.NumberBoxes}>
-      <ul>
+      <section className={styles.row}>
         {boxes[0]}
-      </ul>
-      <ul>
+      </section>
+      <section className={styles.row}>
         {boxes[1]}
-      </ul>
-      <ul>
+      </section>
+      <section className={styles.row}>
         {boxes[2]}
-      </ul>
-      <ul>
+      </section>
+      <section className={styles.row}>
         {boxes[3]}
-      </ul>
+      </section>
     </section>
   );
 }

@@ -8,11 +8,10 @@
   border-radius: 10px;
   background: #fffaef;
 
-  ul {
+  .row {
     display: flex;
-    margin: 0;
+    flex-direction: row;
     justify-content: space-between;
-    padding: 0;
   }
 
   li {
