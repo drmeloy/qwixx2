@@ -7,7 +7,13 @@ describe('boxes reducer', () => {
     yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
     green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
     blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-    penalties: 0
+    penalties: 0,
+    unlockedRows: {
+      red: false,
+      yellow: false,
+      green: false,
+      blue: false
+    }
   };
 
   it('handles a checkBox(red) action', () => {
@@ -17,7 +23,13 @@ describe('boxes reducer', () => {
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
       blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-      penalties: 0
+      penalties: 0,
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: false
+      }
     });
   });
 
@@ -28,7 +40,13 @@ describe('boxes reducer', () => {
       yellow: [],
       green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
       blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-      penalties: 0
+      penalties: 0,
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: false
+      }
     });
   });
 
@@ -39,7 +57,13 @@ describe('boxes reducer', () => {
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       green: [7, 6, 5, 4, 3],
       blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-      penalties: 0
+      penalties: 0,
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: false
+      }
     });
   });
 
@@ -50,7 +74,13 @@ describe('boxes reducer', () => {
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
       blue: [],
-      penalties: 0
+      penalties: 0,
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: false
+      }
     });
   });
 
@@ -61,7 +91,13 @@ describe('boxes reducer', () => {
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
       blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-      penalties: 1
+      penalties: 1,
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: false
+      }
     });
   });
 
@@ -72,7 +108,13 @@ describe('boxes reducer', () => {
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
       blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-      penalties: 0
+      penalties: 0,
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: false
+      }
     });
 
     const newState2 = reducer(newState, disableRow('blue'));
@@ -81,21 +123,24 @@ describe('boxes reducer', () => {
       yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
       blue: [],
-      penalties: 0
-    });
-  });
-
-  it('handles a unlockLastBox action', () => {
-    const state = {
+      penalties: 0,
       unlockedRows: {
         red: false,
         yellow: false,
         green: false,
         blue: false
       }
-    };
-    const newState = reducer(state, unlockLastBox('red'));
+    });
+  });
+
+  it('handles a unlockLastBox action', () => {
+    const newState = reducer(initialState, unlockLastBox('red'));
     expect(newState).toEqual({
+      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      penalties: 0,
       unlockedRows: {
         red: true,
         yellow: false,
@@ -106,42 +151,16 @@ describe('boxes reducer', () => {
 
     const newState2 = reducer(newState, unlockLastBox('blue'));
     expect(newState2).toEqual({
+      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      penalties: 0,
       unlockedRows: {
         red: true,
         yellow: false,
         green: false,
         blue: true
-      }
-    });
-  });
-
-  it('adds final box to row when it is unlocked', () => {
-    const state = {
-      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-      penalties: 0,
-      unlockedRows: {
-        red: false,
-        yellow: false,
-        green: false,
-        blue: false
-      }
-    };
-
-    const newState = reducer(unlockLastBox('red'));
-    expect(newState).toEqual({
-      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
-      penalties: 0,
-      unlockedRows: {
-        red: true,
-        yellow: false,
-        green: false,
-        blue: false
       }
     });
   });
