@@ -8,7 +8,7 @@ import lock from '../../../public/assets/lock.png';
 import check from '../../../public/assets/check.png';
 
 export default function NumberBox({ color, num, selector }){
-  const [checked, swapChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
   const queue = useSelector(getBothActions);
 
@@ -18,8 +18,15 @@ export default function NumberBox({ color, num, selector }){
     else dispatch(addAction([color, num]));
   };
 
+  const changeChecked = (color, num) => {
+    if(queue.length === 2){
+      if(JSON.stringify(queue).includes(JSON.stringify([color, num]))) setChecked(!checked);
+    }
+    else setChecked(!checked);
+  };
+
   const handleClick = () => {
-    swapChecked(!checked);
+    changeChecked(color, num);
     changeQueue(color, num);
   };
 
