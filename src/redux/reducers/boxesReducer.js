@@ -16,7 +16,12 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action){
-  const boxArray = generateBoxArray(action.type, action.payload);
+  const boxArray = generateBoxArray(action.type, action.payload, state.unlockedRows[reverseDictionary[action.type]]);
+  const unlockedRow = color => {
+    if(color === 'red' || color === 'yellow') return [...state[color], 12, 13];
+    if(color === 'green' || color === 'blue') return [...state[color], 2, 1];
+  };
+
   switch(action.type){
     case CHECK_RED: 
       return { ...state, red: boxArray };
@@ -31,7 +36,7 @@ export default function reducer(state = initialState, action){
     case DISABLE_ROW:
       return { ...state, [action.payload]: [] };
     case UNLOCK_LAST_BOX:
-      return { ...state, unlockedRows: { ...state.unlockedRows, [action.payload]: true } };
+      return { ...state, [action.payload]: unlockedRow(action.payload), unlockedRows: { ...state.unlockedRows, [action.payload]: true } };
     default: return state;
   }
 }
