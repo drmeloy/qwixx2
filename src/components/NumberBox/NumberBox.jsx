@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBothActions } from '../../redux/selectors/actionsSelectors';
 import { addAction, removeAction } from '../../redux/actions/actionsActions';
 import lock from '../../../public/assets/lock.png';
+import check from '../../../public/assets/check.png';
 
 export default function NumberBox({ color, num, selector }){
   const [checked, swapChecked] = useState(false);
@@ -30,7 +31,7 @@ export default function NumberBox({ color, num, selector }){
         ${checked === true ? styles.checkedBox : ''}`}
       onClick={handleClick}
     >
-      {num === 13 || num === 1 ? <img src={lock}></img> : num}
+      {num === 13 || num === 1 ? <img src={lock}></img> : checked ? <img src={check}></img> : num}
     </div>
   );
 }

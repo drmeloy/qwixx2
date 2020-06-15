@@ -34,5 +34,7 @@
 }
 
 .checkedBox {
-  background-color: hotpink;
+  img {
+    height: 18px;
+  }
 }
