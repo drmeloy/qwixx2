@@ -28,6 +28,13 @@ export const rowDictionary = {
   'penalty': CHECK_PENALTY
 };
 
+export const reverseDictionary = {
+  CHECK_RED: 'red',
+  CHECK_YELLOW: 'yellow',
+  CHECK_GREEN: 'green',
+  CHECK_BLUE: 'blue'
+};
+
 export const scoreDictionary = {
   'red': INCREMENT_SCORE_RED,
   'yellow': INCREMENT_SCORE_YELLOW,

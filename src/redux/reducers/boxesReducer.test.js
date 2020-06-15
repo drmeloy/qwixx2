@@ -1,4 +1,4 @@
-import { disableRow, checkBox } from '../actions/boxActions';
+import { disableRow, checkBox, unlockLastBox } from '../actions/boxActions';
 import reducer from './boxesReducer';
 
 describe('boxes reducer', () => {
@@ -82,6 +82,67 @@ describe('boxes reducer', () => {
       green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
       blue: [],
       penalties: 0
+    });
+  });
+
+  it('handles a unlockLastBox action', () => {
+    const state = {
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: false
+      }
+    };
+    const newState = reducer(state, unlockLastBox('red'));
+    expect(newState).toEqual({
+      unlockedRows: {
+        red: true,
+        yellow: false,
+        green: false,
+        blue: false
+      }
+    });
+
+    const newState2 = reducer(newState, unlockLastBox('blue'));
+    expect(newState2).toEqual({
+      unlockedRows: {
+        red: true,
+        yellow: false,
+        green: false,
+        blue: true
+      }
+    });
+  });
+
+  it('adds final box to row when it is unlocked', () => {
+    const state = {
+      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      penalties: 0,
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: false
+      }
+    };
+
+    const newState = reducer(unlockLastBox('red'));
+    expect(newState).toEqual({
+      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      penalties: 0,
+      unlockedRows: {
+        red: true,
+        yellow: false,
+        green: false,
+        blue: false
+      }
     });
   });
 });

@@ -11,7 +11,13 @@ export default function NumberBox({ color, num, rowSelector, scoreSelector }){
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
   const queue = useSelector(getBothActions);
-  const score = useSelector(scoreSelector);  
+  const boxes = useSelector(rowSelector);
+  const score = useSelector(scoreSelector);
+
+  if(score >= 15){
+    if(color === 'red' || color === 'yellow') boxes.push(12);
+    else if(color === 'green' || color === 'blue') boxes.push(2);
+  }
 
   const changeQueue = (color, num) => {
     if(queue.length < 1) dispatch(addAction([color, num]));
@@ -33,7 +39,7 @@ export default function NumberBox({ color, num, rowSelector, scoreSelector }){
 
   const boxClasses = `
     ${styles.box} 
-    ${useSelector(rowSelector).includes(num) ? styles[color] : styles.inactive} 
+    ${boxes.includes(num) ? styles[color] : styles.inactive} 
     ${checked === true ? styles.checkedBox : ''}
   `;
 
