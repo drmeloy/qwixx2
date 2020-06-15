@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './ScoreDisplay.css';
 import { useSelector } from 'react-redux';
 import { getRedScore, getYellowScore, getGreenScore, getBlueScore, getPenaltyScore, getTotalScore } from '../../redux/selectors/scoreSelectors';

@@ -7,10 +7,11 @@ import { addAction, removeAction } from '../../redux/actions/actionsActions';
 import lock from '../../../public/assets/lock.png';
 import check from '../../../public/assets/check.png';
 
-export default function NumberBox({ color, num, selector }){
+export default function NumberBox({ color, num, rowSelector, scoreSelector }){
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
   const queue = useSelector(getBothActions);
+  const score = useSelector(scoreSelector);  
 
   const changeQueue = (color, num) => {
     if(queue.length < 1) dispatch(addAction([color, num]));
@@ -30,14 +31,14 @@ export default function NumberBox({ color, num, selector }){
     changeQueue(color, num);
   };
 
+  const boxClasses = `
+    ${styles.box} 
+    ${useSelector(rowSelector).includes(num) ? styles[color] : styles.inactive} 
+    ${checked === true ? styles.checkedBox : ''}
+  `;
+
   return (
-    <div 
-      className={`
-        ${styles.box} 
-        ${useSelector(selector).includes(num) ? styles[color] : styles.inactive} 
-        ${checked === true ? styles.checkedBox : ''}`}
-      onClick={handleClick}
-    >
+    <div className={boxClasses} onClick={handleClick}>
       {num === 13 || num === 1 ? <img src={lock}></img> : checked ? <img src={check}></img> : num}
     </div>
   );
@@ -46,5 +47,6 @@ export default function NumberBox({ color, num, selector }){
 NumberBox.propTypes = {
   color: PropTypes.string.isRequired,
   num: PropTypes.number.isRequired,
-  selector: PropTypes.func.isRequired
+  rowSelector: PropTypes.func.isRequired,
+  scoreSelector: PropTypes.func.isRequired
 };
