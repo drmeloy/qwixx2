@@ -6,6 +6,7 @@ import { getBothActions } from '../../redux/selectors/actionsSelectors';
 import { addAction, removeAction } from '../../redux/actions/actionsActions';
 import lock from '../../../public/assets/lock.png';
 import check from '../../../public/assets/check.png';
+import { unlockLastBox } from '../../redux/actions/boxActions';
 
 export default function NumberBox({ color, num, rowSelector, scoreSelector }){
   const [checked, setChecked] = useState(false);
@@ -15,8 +16,7 @@ export default function NumberBox({ color, num, rowSelector, scoreSelector }){
   const score = useSelector(scoreSelector);
 
   if(score >= 15){
-    if(color === 'red' || color === 'yellow') boxes.push(12);
-    else if(color === 'green' || color === 'blue') boxes.push(2);
+    dispatch(unlockLastBox(color));
   }
 
   const changeQueue = (color, num) => {
