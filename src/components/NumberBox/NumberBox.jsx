@@ -7,7 +7,7 @@ import { addAction, removeAction } from '../../redux/actions/actionsActions';
 import lock from '../../../public/assets/lock.png';
 import check from '../../../public/assets/check.png';
 
-export default function NumberBox({ color, num, rowSelector, numChecked, setNumChecked, rowUnlocked, setRowUnlocked }){
+export default function NumberBox({ color, num, rowSelector, numChecked, setNumChecked }){
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
   const queue = useSelector(getBothActions);
@@ -41,6 +41,7 @@ export default function NumberBox({ color, num, rowSelector, numChecked, setNumC
     ${boxes.includes(num) ? styles[color] : styles.inactive} 
     ${checked ? styles.checkedBox : ''}
   `;
+
 
   return (
     <div className={boxClasses} onClick={handleClick}>
