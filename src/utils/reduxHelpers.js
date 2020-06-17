@@ -1,10 +1,10 @@
-export const generateBoxArray = (color, num) => {
+export const generateBoxArray = (color, num, isUnlocked) => {
   const array = [];
   if(color === CHECK_RED || color === CHECK_YELLOW){
-    for(let i = num + 1; i < 13; i++) array.push(i);
+    for(let i = num + 1; i < (isUnlocked ? 14 : 12); i++) array.push(i);
   }
   else if(color === CHECK_GREEN || color === CHECK_BLUE){
-    for(let i = num - 1; i > 1; i--) array.push(i);
+    for(let i = num - 1; i > (isUnlocked ? 0 : 2); i--) array.push(i);
   }
   return array;
 };
@@ -26,6 +26,13 @@ export const rowDictionary = {
   'green': CHECK_GREEN,
   'blue': CHECK_BLUE,
   'penalty': CHECK_PENALTY
+};
+
+export const reverseDictionary = {
+  CHECK_RED: 'red',
+  CHECK_YELLOW: 'yellow',
+  CHECK_GREEN: 'green',
+  CHECK_BLUE: 'blue'
 };
 
 export const scoreDictionary = {

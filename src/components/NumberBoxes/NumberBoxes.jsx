@@ -5,7 +5,6 @@ import { colors, generateRow } from '../../utils/boxesHelpers';
 export default function NumberBoxes(){
   const boxes = colors.map(color => generateRow(color));
 
-
   return (
     <section className={styles.NumberBoxes}>
       <section className={styles.row}>
