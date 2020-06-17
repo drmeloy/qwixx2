@@ -1,4 +1,4 @@
-import { disableRow, checkBox, unlockLastBox } from '../actions/boxActions';
+import { disableRow, checkBox, unlockLastBox, lockLastBox } from '../actions/boxActions';
 import reducer from './boxesReducer';
 
 describe('boxes reducer', () => {
@@ -133,7 +133,7 @@ describe('boxes reducer', () => {
     });
   });
 
-  it('handles a unlockLastBox action', () => {
+  it('handles an unlockLastBox action', () => {
     const newState = reducer(initialState, unlockLastBox('red'));
     expect(newState).toEqual({
       red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
@@ -161,6 +161,52 @@ describe('boxes reducer', () => {
         yellow: false,
         green: false,
         blue: true
+      }
+    });
+  });
+
+  it('handles a lockLastBox action', () => {
+    const unlockedState = {
+      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      penalties: 0,
+      unlockedRows: {
+        red: true,
+        yellow: false,
+        green: false,
+        blue: true
+      }
+    };
+
+    const newState = reducer(unlockedState, lockLastBox('red'));
+    expect(newState).toEqual({
+      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      penalties: 0,
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: true
+      }
+    });
+
+    const newState2 = reducer(newState, lockLastBox('blue'));
+    expect(newState2).toEqual({
+      red: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      yellow: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      green: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      blue: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3],
+      penalties: 0,
+      unlockedRows: {
+        red: false,
+        yellow: false,
+        green: false,
+        blue: false
       }
     });
   });
