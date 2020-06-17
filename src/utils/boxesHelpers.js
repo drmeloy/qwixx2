@@ -17,7 +17,7 @@ const scoreHash = {
   'blue': getBlueScore
 };
 
-export const generateRow = (color, numChecked, setNumChecked) => {
+export const generateRow = (color, rowSelector, numChecked, setNumChecked) => {
   let numbers = [];
   if(color === 'red' || color === 'yellow'){
     for(let i = 2; i < 14; i++){
@@ -31,6 +31,6 @@ export const generateRow = (color, numChecked, setNumChecked) => {
   }
 
   return numbers.map((num => (
-    <NumberBox key={color + num} color={color} num={num} rowSelector={rowHash[color]} numChecked={numChecked} setNumChecked={setNumChecked} />
+    <NumberBox key={color + num} color={color} num={num} rowSelector={rowSelector} numChecked={numChecked} setNumChecked={setNumChecked} />
   )));
 };
