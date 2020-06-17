@@ -40,7 +40,7 @@ export default function NumberBox({ color, num, rowSelector, scoreSelector }){
   const boxClasses = `
     ${styles.box} 
     ${boxes.includes(num) ? styles[color] : styles.inactive} 
-    ${checked === true ? styles.checkedBox : ''}
+    ${checked ? styles.checkedBox : ''}
   `;
 
   return (
