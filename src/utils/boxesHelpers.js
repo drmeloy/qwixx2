@@ -3,8 +3,6 @@ import { getReds, getYellows, getGreens, getBlues } from '../redux/selectors/box
 import NumberBox from '../components/NumberBox/NumberBox';
 import { getRedScore, getYellowScore, getGreenScore, getBlueScore } from '../redux/selectors/scoreSelectors';
 
-export const colors = ['red', 'yellow', 'green', 'blue'];
-
 const rowHash = {
   'red': getReds,
   'yellow': getYellows,
@@ -19,7 +17,7 @@ const scoreHash = {
   'blue': getBlueScore
 };
 
-export const generateRow = color => {
+export const generateRow = (color, numChecked, setNumChecked) => {
   let numbers = [];
   if(color === 'red' || color === 'yellow'){
     for(let i = 2; i < 14; i++){
@@ -33,6 +31,6 @@ export const generateRow = color => {
   }
 
   return numbers.map((num => (
-    <NumberBox key={color + num} color={color} num={num} rowSelector={rowHash[color]} scoreSelector={scoreHash[color]}/>
+    <NumberBox key={color + num} color={color} num={num} rowSelector={rowHash[color]} numChecked={numChecked} setNumChecked={setNumChecked} />
   )));
 };

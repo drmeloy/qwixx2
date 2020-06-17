@@ -7,10 +7,4 @@
   border: 3px solid #b7b163;
   border-radius: 10px;
   background: #fffaef;
-
-  .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
 }
