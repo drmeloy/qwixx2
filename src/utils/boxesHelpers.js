@@ -1,20 +1,12 @@
 import React from 'react';
 import { getReds, getYellows, getGreens, getBlues } from '../redux/selectors/boxSelectors';
 import NumberBox from '../components/NumberBox/NumberBox';
-import { getRedScore, getYellowScore, getGreenScore, getBlueScore } from '../redux/selectors/scoreSelectors';
 
-const rowHash = {
+export const rowHash = {
   'red': getReds,
   'yellow': getYellows,
   'green': getGreens,
   'blue': getBlues
-};
-
-const scoreHash = {
-  'red': getRedScore,
-  'yellow': getYellowScore,
-  'green': getGreenScore,
-  'blue': getBlueScore
 };
 
 export const generateRow = (color, rowSelector, numChecked, setNumChecked) => {

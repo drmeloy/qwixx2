@@ -53,5 +53,7 @@ export default function NumberBox({ color, num, rowSelector, numChecked, setNumC
 NumberBox.propTypes = {
   color: PropTypes.string.isRequired,
   num: PropTypes.number.isRequired,
-  rowSelector: PropTypes.func.isRequired
+  rowSelector: PropTypes.func.isRequired,
+  numChecked: PropTypes.number.isRequired,
+  setNumChecked: PropTypes.func.isRequired
 };
