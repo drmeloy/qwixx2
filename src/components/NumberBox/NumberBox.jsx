@@ -6,18 +6,12 @@ import { getBothActions } from '../../redux/selectors/actionsSelectors';
 import { addAction, removeAction } from '../../redux/actions/actionsActions';
 import lock from '../../../public/assets/lock.png';
 import check from '../../../public/assets/check.png';
-import { unlockLastBox } from '../../redux/actions/boxActions';
 
-export default function NumberBox({ color, num, rowSelector, scoreSelector }){
+export default function NumberBox({ color, num, rowSelector, numChecked, setNumChecked }){
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
   const queue = useSelector(getBothActions);
   const boxes = useSelector(rowSelector);
-  const score = useSelector(scoreSelector);
-
-  if(score >= 15){
-    dispatch(unlockLastBox(color));
-  }
 
   const changeQueue = (color, num) => {
     if(queue.length < 1) dispatch(addAction([color, num]));
@@ -28,8 +22,13 @@ export default function NumberBox({ color, num, rowSelector, scoreSelector }){
   const changeChecked = (color, num) => {
     if(queue.length === 2){
       if(JSON.stringify(queue).includes(JSON.stringify([color, num]))) setChecked(!checked);
+      setNumChecked(numChecked - 1);
     }
-    else setChecked(!checked);
+    else {
+      setChecked(!checked);
+      if(checked) setNumChecked(numChecked - 1);
+      else setNumChecked(numChecked + 1);
+    }
   };
 
   const handleClick = () => {
@@ -43,6 +42,7 @@ export default function NumberBox({ color, num, rowSelector, scoreSelector }){
     ${checked ? styles.checkedBox : ''}
   `;
 
+
   return (
     <div className={boxClasses} onClick={handleClick}>
       {num === 13 || num === 1 ? <img src={lock}></img> : checked ? <img src={check}></img> : num}
@@ -54,5 +54,6 @@ NumberBox.propTypes = {
   color: PropTypes.string.isRequired,
   num: PropTypes.number.isRequired,
   rowSelector: PropTypes.func.isRequired,
-  scoreSelector: PropTypes.func.isRequired
+  numChecked: PropTypes.number.isRequired,
+  setNumChecked: PropTypes.func.isRequired
 };

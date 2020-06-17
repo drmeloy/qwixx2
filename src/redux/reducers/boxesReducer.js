@@ -1,4 +1,4 @@
-import { DISABLE_ROW, UNLOCK_LAST_BOX } from '../actions/boxActions';
+import { DISABLE_ROW, UNLOCK_LAST_BOX, LOCK_LAST_BOX } from '../actions/boxActions';
 import { generateBoxArray, CHECK_RED, CHECK_YELLOW, CHECK_GREEN, CHECK_BLUE, CHECK_PENALTY, reverseDictionary } from '../../utils/reduxHelpers';
 
 const initialState = {
@@ -37,6 +37,8 @@ export default function reducer(state = initialState, action){
       return { ...state, [action.payload]: [] };
     case UNLOCK_LAST_BOX:
       return { ...state, [action.payload]: unlockedRow(action.payload), unlockedRows: { ...state.unlockedRows, [action.payload]: true } };
+    case LOCK_LAST_BOX:
+      return { ...state, [action.payload]: state[action.payload].slice(0, -2), unlockedRows: { ...state.unlockedRows, [action.payload]: false } };
     default: return state;
   }
 }

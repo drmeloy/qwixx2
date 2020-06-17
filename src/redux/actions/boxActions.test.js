@@ -1,4 +1,4 @@
-import { DISABLE_ROW, disableRow, checkBox, unlockLastBox, UNLOCK_LAST_BOX } from './boxActions';
+import { DISABLE_ROW, disableRow, checkBox, unlockLastBox, UNLOCK_LAST_BOX, lockLastBox, LOCK_LAST_BOX } from './boxActions';
 import { CHECK_RED, CHECK_YELLOW, CHECK_GREEN, CHECK_BLUE, CHECK_PENALTY } from '../../utils/reduxHelpers';
 
 describe('board action', () => {
@@ -19,5 +19,10 @@ describe('board action', () => {
   it('can create a UNLOCK_LAST_BOX action', () => {
     const action = unlockLastBox('red');
     expect(action).toEqual({ type: UNLOCK_LAST_BOX, payload: 'red' });
+  });
+
+  it('can create a LOCK_LAST_BOX action', () => {
+    const action = lockLastBox('red');
+    expect(action).toEqual({ type: LOCK_LAST_BOX, payload: 'red' });
   });
 });
