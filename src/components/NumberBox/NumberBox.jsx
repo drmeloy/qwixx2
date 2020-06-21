@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './NumberBox.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,17 +19,20 @@ export default function NumberBox({ color, num, rowSelector, numChecked, setNumC
     else dispatch(addAction([color, num]));
   };
 
+  const checkIfLastBox = (color, num) => {
+    if((color === 'red' || color === 'yellow') && num === 12) setLastBoxChecked(!lastBoxChecked);
+    if((color === 'green' || color === 'blue') && num === 2) setLastBoxChecked(!lastBoxChecked); 
+  };
+
   const changeChecked = (color, num) => {
     if(queue.length === 2){
       if(JSON.stringify(queue).includes(JSON.stringify([color, num]))) setChecked(!checked);
       setNumChecked(numChecked - 1);
-      if((color === 'red' || color === 'yellow') && num === 12) setLastBoxChecked(!lastBoxChecked);
-      if((color === 'green' || color === 'blue') && num === 2) setLastBoxChecked(!lastBoxChecked);  
+      checkIfLastBox(color, num);
     }
     else {
       setChecked(!checked);
-      if((color === 'red' || color === 'yellow') && num === 12) setLastBoxChecked(!lastBoxChecked);
-      if((color === 'green' || color === 'blue') && num === 2) setLastBoxChecked(!lastBoxChecked);      
+      checkIfLastBox(color, num);     
       if(checked) setNumChecked(numChecked - 1);
       else setNumChecked(numChecked + 1);
     }
@@ -59,5 +62,7 @@ NumberBox.propTypes = {
   num: PropTypes.number.isRequired,
   rowSelector: PropTypes.func.isRequired,
   numChecked: PropTypes.number.isRequired,
-  setNumChecked: PropTypes.func.isRequired
+  setNumChecked: PropTypes.func.isRequired,
+  lastBoxChecked: PropTypes.bool.isRequired,
+  setLastBoxChecked: PropTypes.func.isRequired
 };
