@@ -7,10 +7,11 @@ import { unlockLastBox, lockLastBox } from '../../redux/actions/boxActions';
 
 export default function Row({ color }){
   const [numChecked, setNumChecked] = useState(0);
+  const [lastBoxChecked, setLastBoxChecked] = useState(false);
   const dispatch = useDispatch();
   const rowSelector = rowHash[color];
   const boxes = useSelector(rowSelector);
-  const row = generateRow(color, rowSelector, numChecked, setNumChecked);
+  const row = generateRow(color, rowSelector, numChecked, setNumChecked, lastBoxChecked, setLastBoxChecked);
 
   useEffect(() => {
     if(numChecked > 4) dispatch(unlockLastBox(color));

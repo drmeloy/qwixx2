@@ -7,7 +7,7 @@ import { addAction, removeAction } from '../../redux/actions/actionsActions';
 import lock from '../../../public/assets/lock.png';
 import check from '../../../public/assets/check.png';
 
-export default function NumberBox({ color, num, rowSelector, numChecked, setNumChecked }){
+export default function NumberBox({ color, num, rowSelector, numChecked, setNumChecked, lastBoxChecked, setLastBoxChecked }){
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
   const queue = useSelector(getBothActions);
@@ -19,19 +19,26 @@ export default function NumberBox({ color, num, rowSelector, numChecked, setNumC
     else dispatch(addAction([color, num]));
   };
 
+  const checkIfLastBox = (color, num) => {
+    if((color === 'red' || color === 'yellow') && num === 12) setLastBoxChecked(!lastBoxChecked);
+    if((color === 'green' || color === 'blue') && num === 2) setLastBoxChecked(!lastBoxChecked); 
+  };
+
   const changeChecked = (color, num) => {
     if(queue.length === 2){
       if(JSON.stringify(queue).includes(JSON.stringify([color, num]))) setChecked(!checked);
       setNumChecked(numChecked - 1);
+      checkIfLastBox(color, num);
     }
     else {
       setChecked(!checked);
+      checkIfLastBox(color, num);     
       if(checked) setNumChecked(numChecked - 1);
       else setNumChecked(numChecked + 1);
     }
   };
 
-  const handleClick = () => {
+  const handleClick = () => {  
     changeChecked(color, num);
     changeQueue(color, num);
   };
@@ -45,7 +52,7 @@ export default function NumberBox({ color, num, rowSelector, numChecked, setNumC
 
   return (
     <div className={boxClasses} onClick={handleClick}>
-      {num === 13 || num === 1 ? <img src={lock}></img> : checked ? <img src={check}></img> : num}
+      {(num === 13 || num === 1) && lastBoxChecked ? <img src={check}></img> : num === 13 || num === 1 ? <img src={lock}></img> : checked ? <img src={check}></img> : num}
     </div>
   );
 }
@@ -55,5 +62,7 @@ NumberBox.propTypes = {
   num: PropTypes.number.isRequired,
   rowSelector: PropTypes.func.isRequired,
   numChecked: PropTypes.number.isRequired,
-  setNumChecked: PropTypes.func.isRequired
+  setNumChecked: PropTypes.func.isRequired,
+  lastBoxChecked: PropTypes.bool.isRequired,
+  setLastBoxChecked: PropTypes.func.isRequired
 };

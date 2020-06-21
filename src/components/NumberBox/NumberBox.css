@@ -6,6 +6,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  img {
+    height: 18px;
+  }
 }
 
 .red {
@@ -31,10 +35,4 @@
 .inactive {
   background: rgb(179, 179, 179);
   border: 3px solid;
-}
-
-.checkedBox {
-  img {
-    height: 18px;
-  }
 }
