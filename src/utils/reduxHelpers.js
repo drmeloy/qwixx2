@@ -1,9 +1,11 @@
 export const generateBoxArray = (color, num, isUnlocked) => {
   const array = [];
   if(color === CHECK_RED || color === CHECK_YELLOW){
+    if(num === 12) return [];
     for(let i = num + 1; i < (isUnlocked ? 14 : 12); i++) array.push(i);
   }
   else if(color === CHECK_GREEN || color === CHECK_BLUE){
+    if(num === 2) return [];
     for(let i = num - 1; i > (isUnlocked ? 0 : 2); i--) array.push(i);
   }
   return array;
