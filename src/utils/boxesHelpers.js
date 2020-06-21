@@ -9,7 +9,7 @@ export const rowHash = {
   'blue': getBlues
 };
 
-export const generateRow = (color, rowSelector, numChecked, setNumChecked) => {
+export const generateRow = (color, rowSelector, numChecked, setNumChecked, lastBoxChecked, setLastBoxChecked) => {
   let numbers = [];
   if(color === 'red' || color === 'yellow'){
     for(let i = 2; i < 14; i++){
@@ -23,6 +23,6 @@ export const generateRow = (color, rowSelector, numChecked, setNumChecked) => {
   }
 
   return numbers.map((num => (
-    <NumberBox key={color + num} color={color} num={num} rowSelector={rowSelector} numChecked={numChecked} setNumChecked={setNumChecked} />
+    <NumberBox key={color + num} color={color} num={num} rowSelector={rowSelector} numChecked={numChecked} setNumChecked={setNumChecked} lastBoxChecked={lastBoxChecked} setLastBoxChecked={setLastBoxChecked} />
   )));
 };

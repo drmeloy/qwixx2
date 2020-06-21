@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './NumberBox.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import { addAction, removeAction } from '../../redux/actions/actionsActions';
 import lock from '../../../public/assets/lock.png';
 import check from '../../../public/assets/check.png';
 
-export default function NumberBox({ color, num, rowSelector, numChecked, setNumChecked }){
+export default function NumberBox({ color, num, rowSelector, numChecked, setNumChecked, lastBoxChecked, setLastBoxChecked }){
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
   const queue = useSelector(getBothActions);
@@ -23,15 +23,19 @@ export default function NumberBox({ color, num, rowSelector, numChecked, setNumC
     if(queue.length === 2){
       if(JSON.stringify(queue).includes(JSON.stringify([color, num]))) setChecked(!checked);
       setNumChecked(numChecked - 1);
+      if((color === 'red' || color === 'yellow') && num === 12) setLastBoxChecked(!lastBoxChecked);
+      if((color === 'green' || color === 'blue') && num === 2) setLastBoxChecked(!lastBoxChecked);  
     }
     else {
       setChecked(!checked);
+      if((color === 'red' || color === 'yellow') && num === 12) setLastBoxChecked(!lastBoxChecked);
+      if((color === 'green' || color === 'blue') && num === 2) setLastBoxChecked(!lastBoxChecked);      
       if(checked) setNumChecked(numChecked - 1);
       else setNumChecked(numChecked + 1);
     }
   };
 
-  const handleClick = () => {
+  const handleClick = () => {  
     changeChecked(color, num);
     changeQueue(color, num);
   };
@@ -45,7 +49,7 @@ export default function NumberBox({ color, num, rowSelector, numChecked, setNumC
 
   return (
     <div className={boxClasses} onClick={handleClick}>
-      {num === 13 || num === 1 ? <img src={lock}></img> : checked ? <img src={check}></img> : num}
+      {(num === 13 || num === 1) && lastBoxChecked ? <img src={check}></img> : num === 13 || num === 1 ? <img src={lock}></img> : checked ? <img src={check}></img> : num}
     </div>
   );
 }
