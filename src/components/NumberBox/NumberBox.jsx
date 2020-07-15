@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './NumberBox.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,12 +6,19 @@ import { getBothActions } from '../../redux/selectors/actionsSelectors';
 import { addAction, removeAction } from '../../redux/actions/actionsActions';
 import lock from '../../../public/assets/lock.png';
 import check from '../../../public/assets/check.png';
+import { getWhiteDiceSum, getWhiteDie1Value, getWhiteDie2Value, getRedDieValue, getYellowDieValue, getGreenDieValue, getBlueDieValue } from '../../redux/selectors/diceSelectors';
+import { diceValuesHash } from '../../utils/boxesHelpers';
 
 export default function NumberBox({ color, num, rowSelector, numChecked, setNumChecked, lastBoxChecked, setLastBoxChecked }){
   const [checked, setChecked] = useState(false);
+  const [available, setAvailable] = useState(false);
   const dispatch = useDispatch();
   const queue = useSelector(getBothActions);
   const boxes = useSelector(rowSelector);
+  const colorValueSelectors = diceValuesHash[color];
+  const colorValue1 = useSelector(colorValueSelectors[0]);
+  const colorValue2 = useSelector(colorValueSelectors[1]);
+  const whiteValue = useSelector(getWhiteDiceSum);
 
   const changeQueue = (color, num) => {
     if(queue.length < 1) dispatch(addAction([color, num]));
@@ -43,12 +50,21 @@ export default function NumberBox({ color, num, rowSelector, numChecked, setNumC
     changeQueue(color, num);
   };
 
+  const checkAvailability = () => {
+    if(num === colorValue1 || num ===  colorValue2 || num === whiteValue) setAvailable(true);
+    else setAvailable(false);
+  };
+
+  useEffect(() => {
+    checkAvailability()
+  }, [useSelector(getWhiteDie1Value), useSelector(getWhiteDie2Value), useSelector(getRedDieValue), useSelector(getYellowDieValue), useSelector(getGreenDieValue), useSelector(getBlueDieValue)]);
+
   const boxClasses = `
     ${styles.box} 
     ${boxes.includes(num) ? styles[color] : styles.inactive} 
-    ${checked ? styles.checkedBox : ''}
+    ${checked ? styles.checkedBox : ''} 
+    ${available && boxes.includes(num) ? styles.available : ''}
   `;
-
 
   return (
     <div className={boxClasses} onClick={handleClick}>

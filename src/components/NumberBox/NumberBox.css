@@ -36,3 +36,7 @@
   background: rgb(179, 179, 179);
   border: 3px solid;
 }
+
+.available {
+  border: 5px solid white;
+}
